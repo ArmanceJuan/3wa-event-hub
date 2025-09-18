@@ -97,9 +97,9 @@ Ce projet utilise la spécification Conventional Commits pour maintenir un histo
   - **style**: Changements qui n'affectent pas le sens du code (espaces, formatage, etc.)
   - **docs**: Documentation
 - Suive par une majuscule qui determine la partie impactée par les changements effectués :
-  - Si les changements sont uniquement dans le back-end, il faut utiliser la majuscule B-.
-  - Si les changements sont uniquement dans le front-end, il faut utiliser la majuscule F-.
-  - Si les changements sont dans le back-end et dans le front-end et ne sont pas divisible en 2 commits distinct, il faut utiliser la majuscule A- (pour all).
+  - Si les changements sont uniquement dans le back-end, il faut utiliser la majuscule b-.
+  - Si les changements sont uniquement dans le front-end, il faut utiliser la majuscule f-.
+  - Si les changements sont dans le back-end et dans le front-end et ne sont pas divisible en 2 commits distinct, il faut utiliser la majuscule a- (pour all).
 
 ### Exemples
 
