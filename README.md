@@ -88,10 +88,6 @@ Ce projet utilise la spécification Conventional Commits pour maintenir un histo
 
 - Les commits doivent être faits en anglais.
 - Les commits doivent être simples et courts.
-- Les commits doivent démarrer par la majuscule selon la partie impacté par les changement effectué :
-  - Si les changements sont uniquement dans le back-end, il faut utiliser la majuscule B-.
-  - Si les changements sont uniquement dans le front-end, il faut utiliser la majuscule F-.
-  - Si les changements sont dans le back-end et dans le front-end et ne sont pas divisible en 2 commits distinct, il faut utiliser la majuscule A- (pour all).
 - Les commits doivent être écrits àl'impératif.
 - Les commits doivent être structurés en fonction des types de changements suivi de ":" :
   - **feat**: Nouvelle fonctionnalité
@@ -99,19 +95,30 @@ Ce projet utilise la spécification Conventional Commits pour maintenir un histo
   - **chore**: Changements aux outils de build ou dépendances
   - **wip**: Travail en cours
   - **style**: Changements qui n'affectent pas le sens du code (espaces, formatage, etc.)
-  - **install**: Changements de dépendances ou mise à jour de la configuration de l'outil de build
   - **docs**: Documentation
+- Suive par une majuscule qui determine la partie impactée par les changements effectués :
+  - Si les changements sont uniquement dans le back-end, il faut utiliser la majuscule B-.
+  - Si les changements sont uniquement dans le front-end, il faut utiliser la majuscule F-.
+  - Si les changements sont dans le back-end et dans le front-end et ne sont pas divisible en 2 commits distinct, il faut utiliser la majuscule A- (pour all).
 
 ### Exemples
 
 ```bash
-git commit -m "B-feat: add login functionality route"
-git commit -m "F-fix: resolve user data fetching issue"
-git commit -m "A-chore: add delete button for users table"
-git commit -m "F-wip: change tree view permission structure for more logical auto-completion"
-git commit -m "F-style: change dark mode color scheme"
-git commit -m "A-docs: add contributing guidelines"
+git commit -m "feat: B-add login functionality route"
+git commit -m "fix: F-resolve user data fetching issue"
+git commit -m "chore: A-add delete button for users table"
+git commit -m "wip: F-change tree view permission structure for more logical auto-completion"
+git commit -m "style: F-change dark mode color scheme"
+git commit -m "docs: A-add contributing guidelines"
 ```
+
+- Commits conventionnels appliqués avec husky et commitlint
+
+## Workflow Git
+
+- **main** : version stable et prête pour la production
+- **preprod** : version intermédiaire pour tests
+- **dev** : développement actif
 
 ## 📝 Technologies
 
