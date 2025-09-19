@@ -1,0 +1,85 @@
+version: "3.9"
+
+services:
+  backend-event-hub:
+    build:
+      context: ./backend-event-hub
+      dockerfile: Dockerfile
+    container_name: backend-event-hub
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./backend-event-hub:/app
+    # depends_on:
+    #   - mongodb
+    environment:
+      - PORT=3000
+      # - DATABASE_URL=
+      # - MONGODB_URI=
+      # - REDIS_URI=
+    networks:
+      - eventhub-network
+      - eventhub-network-db
+    # depends_on:
+    #   - mongodb
+    #   - postgres
+    #   - redis
+    command: npm run dev
+
+  frontend-event-hub:
+    build:
+      context: ./frontend-event-hub
+      dockerfile: Dockerfile
+    container_name: frontend-event-hub
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    environment:
+      - REACT_APP_BACKEND_URL=http://localhost:3000
+    volumes:
+      - ./frontend-event-hub:/app
+    networks:
+      - eventhub-network
+    depends_on:
+      - backend-event-hub
+    command: npm run dev
+
+# mongodb:
+#   image: mongo:latest
+#   container_name: eventhub-mongodb
+#   restart: unless-stopped
+#   environment:
+#     - MONGO_INITDB_ROOT_USERNAME=root
+#     - MONGO_INITDB_ROOT_PASSWORD=example
+#   ports:
+#     - "27017:27017"
+#   volumes:
+#     - ./mongodb:/data/db
+#   networks:
+#     - eventhub-network-db
+
+# postgres:
+#   image: postgres:latest
+#   container_name: eventhub-postgres
+#   restart: unless-stopped
+#   environment:
+#     - POSTGRES_USER=postgres
+#     - POSTGRES_PASSWORD=example
+#     - POSTGRES_DB=eventhub
+#   ports:
+#     - "5432:5432"
+#   volumes:
+#     - ./postgres:/var/lib/postgresql/data
+#   networks:
+#     - eventhub-network-db
+
+networks:
+  eventhub-network:
+    driver: bridge
+  eventhub-network-db:
+    driver: bridge
+
+volumes:
+  mongodb:
+  postgres:
